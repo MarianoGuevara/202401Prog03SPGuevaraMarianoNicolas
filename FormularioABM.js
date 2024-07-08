@@ -286,10 +286,10 @@ class FormularioABM
                 return response;
             }) // 2do
             .then(response=>{
-                let id = SanitizadorClases.EncontrarIndice(arrayFinal, entidad.id);
+                let indice = SanitizadorClases.EncontrarIndice(arrayFinal, entidad.id);
                 let obj = SanitizadorClases.FromObjectToClass(entidad);
 
-                arrayFinal[id] = obj;
+                arrayFinal[indice] = obj;
                 ActualizarTabla(arrayFinal);
 
                 return response;
@@ -328,7 +328,8 @@ class FormularioABM
 
             if (response.ok)
             {
-                arrayFinal.splice(id, 1)
+                let index = SanitizadorClases.EncontrarIndice(arrayFinal, entidad.id);
+                arrayFinal.splice(index, 1)
                 ActualizarTabla(arrayFinal);
             }
             else alert("Hubo un error con la petición a la api");
